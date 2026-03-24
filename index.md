@@ -22,17 +22,10 @@ Before connecting, ensure you have:
 - An **Azure Entra ID (AAD) Service Principal** with the **Storage Blob Data Contributor** role on the Fabric workspace, **or** a **Managed Identity** assigned to the host running Airbyte with equivalent permissions.
 - The **OneLake endpoint** enabled on your Fabric tenant (enabled by default: `onelake.dfs.fabric.microsoft.com`).
 
-<!-- env:oss -->
-
-<HideInUI>
-
 ### Self-Managed Note
-
-</HideInUI>
 
 When running Airbyte OSS, ensure your instance can reach `onelake.dfs.fabric.microsoft.com` over HTTPS (port 443). If you are using Managed Identity, the host VM or Kubernetes node must have a managed identity assigned with the appropriate Fabric permissions.
 
-<!-- /env:oss -->
 
 ---
 
@@ -73,19 +66,13 @@ Choose one of the two supported authentication methods:
 
 ### OneLake Endpoint Domain Name
 
-<FieldAnchor field="azure_blob_storage_endpoint_domain_name">
-
 The OneLake DFS endpoint. Leave this as the default value unless you are connecting to a sovereign cloud or private endpoint.
 
 **Default:** `onelake.dfs.fabric.microsoft.com`
 
-</FieldAnchor>
-
 ---
 
 ### Fabric Workspace Name or GUID
-
-<FieldAnchor field="azure_blob_storage_account_name">
 
 The name or GUID of your Microsoft Fabric workspace. If the workspace name contains spaces, use the GUID instead.
 
@@ -93,13 +80,9 @@ The name or GUID of your Microsoft Fabric workspace. If the workspace name conta
 
 **Examples:** `myworkspace`, `12345678-aaaa-bbbb-cccc-123456789012`
 
-</FieldAnchor>
-
 ---
 
 ### Lakehouse Item Path
-
-<FieldAnchor field="azure_blob_storage_container_name">
 
 The target Lakehouse within your workspace. This is the Fabric item that will receive your data under its **Files** section.
 
@@ -107,13 +90,9 @@ The target Lakehouse within your workspace. This is the Fabric item that will re
 
 **Examples:** `MyLakehouse.Lakehouse`, `lakehouse_raw`
 
-</FieldAnchor>
-
 ---
 
 ### Output Format
-
-<FieldAnchor field="format">
 
 The file format used for data written to OneLake. Choose between:
 
@@ -126,13 +105,9 @@ The file format used for data written to OneLake. Choose between:
 - `No flattening` — nested objects are preserved as JSON strings inside the output.
 - `Root level flattening` — top-level nested fields are expanded into separate columns/keys.
 
-</FieldAnchor>
-
 ---
 
 ### Use Managed Identity
-
-<FieldAnchor field="use_managed_identity">
 
 Toggle this **on** to authenticate using the Azure Managed Identity of the host running Airbyte, instead of a Service Principal.
 
@@ -141,25 +116,17 @@ Toggle this **on** to authenticate using the Azure Managed Identity of the host 
 
 **Default:** `false`
 
-</FieldAnchor>
-
 ---
 
 ### Managed Identity Client ID (optional)
-
-<FieldAnchor field="managed_identity_client_id">
 
 Only required when using a **User-Assigned Managed Identity**. Leave empty if using a System-Assigned Managed Identity.
 
 This is the **Client ID** of the user-assigned identity, found in the Azure Portal under **Managed Identities**.
 
-</FieldAnchor>
-
 ---
 
 ### Azure Tenant ID
-
-<FieldAnchor field="azure_tenant_id">
 
 The **Directory (Tenant) ID** of your Azure Entra ID. Required when authenticating via Service Principal.
 
@@ -167,13 +134,9 @@ The **Directory (Tenant) ID** of your Azure Entra ID. Required when authenticati
 
 **Example:** `12345678-1234-1234-1234-123456789012`
 
-</FieldAnchor>
-
 ---
 
 ### Azure Client ID
-
-<FieldAnchor field="azure_client_id">
 
 The **Application (Client) ID** of your registered Entra ID app (Service Principal). Required when authenticating via Service Principal.
 
@@ -181,13 +144,9 @@ The **Application (Client) ID** of your registered Entra ID app (Service Princip
 
 **Example:** `87654321-4321-4321-4321-210987654321`
 
-</FieldAnchor>
-
 ---
 
 ### Azure Client Secret
-
-<FieldAnchor field="azure_client_secret">
 
 The client secret generated for your Entra ID app. Required when **Use Managed Identity** is off.
 
@@ -195,25 +154,17 @@ The client secret generated for your Entra ID app. Required when **Use Managed I
 
 > ⚠️ Treat this value as a password. It is stored encrypted by Airbyte.
 
-</FieldAnchor>
-
 ---
 
 ### Target Object Size (MB)
-
-<FieldAnchor field="azure_blob_storage_spill_size">
 
 The maximum size (in megabytes) of each output file before the connector starts writing to a new file (spilling). Set to `0` to disable size-based splitting.
 
 **Default:** `500` MB
 
-</FieldAnchor>
-
 ---
 
 ### Output Path Format
-
-<FieldAnchor field="destination_path_format">
 
 Controls the directory structure inside the Lakehouse **Files** section where data is written. Supports the following template variables:
 
@@ -229,13 +180,9 @@ Controls the directory structure inside the Lakehouse **Files** section where da
 
 Leave empty to use the default path structure.
 
-</FieldAnchor>
-
 ---
 
 ### File Name Pattern
-
-<FieldAnchor field="file_name_pattern">
 
 Controls how output files are named. Supports the following template variables:
 
@@ -249,8 +196,6 @@ Controls how output files are named. Supports the following template variables:
 **Example:** `{date}_{timestamp}_{part_number}{format_extension}`
 
 Leave empty to use default naming.
-
-</FieldAnchor>
 
 ---
 
